@@ -1,19 +1,21 @@
 import Gerne from "./Gerne";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {URLGENRE} from "../../microElements";
+import {useDispatch, useSelector} from "react-redux";
+import {GENRE} from "../../reduxComponents/constActive";
 
 function Gernes() {
-
-    let [ganre, setGenre] = useState([]);
+    const someStore = useSelector(state => state)
+    const dispatch = useDispatch();
 
     useEffect(() => fetch(URLGENRE)
         .then(value => value.json())
-        .then(value => setGenre(value.genres)), [])
+        .then(value => dispatch({type: GENRE, payload: value.genres})), [])
 
 
     return (<div className = "center">
 
-        {ganre.map((value, index) => <Gerne key = {index} value = {value}/>)}
+        {someStore.genre.map((value, index) => <Gerne key = {index} value = {value}/>)}
     </div>);
 }
 

@@ -2,7 +2,6 @@ import {IMAGE} from "../../microElements";
 
 
 function Details(props) {
-    console.log(props.location.state)
     let {
         poster_path, original_title, overview, popularity,
     } = props.location.state

@@ -6,23 +6,24 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Details from "./resource/components/Details/Details";
 import SortGenre from "./resource/components/Gerne/SortGenre";
+import {store} from "./resource/reduxComponents/store";
+import {Provider} from "react-redux";
 
-function App(param) {
-    console.log(param.value)
+function App() {
     return (<div>
-        <Router>
-            <Header/>
-            <Switch>
-                <Route exact path = {"/:id"} component = {Details}/>
-                <Route path = {"/:genre"} component = {SortGenre}/>
-                <div className={'someBox'}>
-                    <Gernes/>
-
-                    <Movies/>
-                </div>
-            </Switch>
-        </Router>
-
+        <Provider store = {store}>
+            <Router>
+                <Header/>
+                <Switch>
+                    <Route exact path = {"/:id"} component = {Details}/>
+                    <Route path = {"/:genre"} component = {SortGenre}/>
+                    <div className = {'someBox'}>
+                        <Gernes/>
+                        <Movies/>
+                    </div>
+                </Switch>
+            </Router>
+        </Provider>
     </div>);
 }
 
